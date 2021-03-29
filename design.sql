@@ -1,0 +1,38 @@
+CREATE DATABASE store_management COLLATE 'utf8mb_unicode_ci';
+
+CREATE TABLE suppliers (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone INTEGER(11) UNSIGNED NOT NULL,
+    brief_data TEXT,
+    PRIMARY KEY(id),
+    product_id INTEGER UNSIGNED NOT NULL,
+
+    FOREIGN KEY(product_id) REFERENCES products(id)
+
+
+);
+
+CREATE TABLE products (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    code INTEGER NOT NULL,
+    price INTEGER NOT NULL,
+    description TEXT,
+    PRIMARY KEY(id),
+);
+
+CREATE TABLE governorates (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
+);
+
+CREATE TABLE stores (
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id),
+    product_id INTEGER UNSIGNED NOT NULL,
+
+    FOREIGN KEY(product_id) REFERENCES products(id)
+);
+
